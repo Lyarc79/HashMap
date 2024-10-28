@@ -41,6 +41,37 @@ class HashMap{
         }
         return null;
     }
+
+    has(key){
+        const index = this.hash(key);
+        const bucket = this.map[index];
+        if(bucket){
+            for(let i = 0; i < bucket.length; i++){
+                if(bucket[i][0] === key){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    remove(key){
+        const index = this.hash(key);
+        const bucket = this.map[index];
+        if(bucket){
+            for(let i = 0; i < bucket.length; i++){
+                if(bucket[i][0] === key){
+                    bucket.splice(i, 1);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    length(){
+
+    }
 }
 
 // Testing:
@@ -59,5 +90,11 @@ console.log("Nami:", testHashMap.get("Nami"));
 // Test 3: Updating an entry
 testHashMap.set("Luffy", "King of Pirates");
 console.log("Updated Luffy:", testHashMap.get("Luffy"));
+//Test 4: Has and remove
+console.log("Luffy exists?", testHashMap.has("Luffy"));
+console.log("Sanji exists?", testHashMap.has("Sanji"));
+testHashMap.set("Sanji", "Cook");
+console.log("Removing Sanji:", testHashMap.remove("Sanji"));
+console.log("Sanji exists anymore?:", testHashMap.has("Sanji"));
 
 
