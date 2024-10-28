@@ -140,4 +140,5 @@ class HashMap{
     }
 }
 
-
+// Export
+module.exports = HashMap;
