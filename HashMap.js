@@ -70,7 +70,41 @@ class HashMap{
     }
 
     length(){
+        let count = 0;
+        for(const bucket of this.map){
+            if(bucket){
+                count += bucket.length;
+            }
+        }
+        return count;
+    }
 
+    clear(){
+        this.map = new Array(this.bucketSize);
+    }
+
+    keys(){
+        const keysArray = [];
+        for(const bucket of this.map){
+            if(bucket){
+                for(const entries of bucket){
+                    keysArray.push(entries[0]);
+                }
+            }
+        }
+        return keysArray;
+    }
+
+    values(){
+        const valuesArray = [];
+        for(const bucket of this.map){
+            if(bucket){
+                for(const entries of bucket){
+                    valuesArray.push(entries[1]);
+                }
+            }
+        }
+        return valuesArray;
     }
 }
 
@@ -79,7 +113,7 @@ const testHashMap = new HashMap()
 // Test 1: Hash method
 console.log("Hash for Luffy:", testHashMap.hash("Luffy"));
 console.log("Hash for Zoro:", testHashMap.hash("Zoro"));
-//Test 2: Set and get method
+//Test 2: Set and get methods
 testHashMap.set("Luffy", "Captain");
 testHashMap.set("Zoro", "Swordmaster");
 testHashMap.set("Nami", "Navigator");
@@ -90,11 +124,23 @@ console.log("Nami:", testHashMap.get("Nami"));
 // Test 3: Updating an entry
 testHashMap.set("Luffy", "King of Pirates");
 console.log("Updated Luffy:", testHashMap.get("Luffy"));
-//Test 4: Has and remove
+//Test 4: Has and remove methods
 console.log("Luffy exists?", testHashMap.has("Luffy"));
 console.log("Sanji exists?", testHashMap.has("Sanji"));
 testHashMap.set("Sanji", "Cook");
 console.log("Removing Sanji:", testHashMap.remove("Sanji"));
 console.log("Sanji exists anymore?:", testHashMap.has("Sanji"));
+// Test 5: Length and clear methods
+console.log("Total keys in map:", testHashMap.length());
+testHashMap.clear();
+console.log("Total keys in map after clear:", testHashMap.length());
+console.log("Setting keys again...");
+testHashMap.set("Luffy", "Captain");
+testHashMap.set("Zoro", "Swordmaster");
+testHashMap.set("Nami", "Navigator");
+// Test 6: Keys and values methods
+console.log("Keys array:", testHashMap.keys());
+console.log("Values array:", testHashMap.values());
+
 
 
