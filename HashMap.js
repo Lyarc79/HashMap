@@ -106,6 +106,18 @@ class HashMap{
         }
         return valuesArray;
     }
+
+    entries(){
+        const entriesArray = [];
+        for(const bucket of this.map){
+            if(bucket){
+                for(const entries of bucket){
+                    entriesArray.push([entries[0], entries[1]]);
+                }
+            }
+        }
+        return entriesArray;
+    }
 }
 
 // Testing:
@@ -138,9 +150,11 @@ console.log("Setting keys again...");
 testHashMap.set("Luffy", "Captain");
 testHashMap.set("Zoro", "Swordmaster");
 testHashMap.set("Nami", "Navigator");
-// Test 6: Keys and values methods
+// Test 6: Keys, values and entries methods
 console.log("Keys array:", testHashMap.keys());
 console.log("Values array:", testHashMap.values());
+console.log("Entries array:", JSON.stringify(testHashMap.entries()));
+
 
 
 
